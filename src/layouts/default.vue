@@ -1,10 +1,65 @@
 <template>
-  <div>
-    <div class="text-h4">Default Layout</div>
-    <router-view></router-view>
-  </div>
+  <q-layout view="lHh Lpr lff" class="bg-grat-2">
+    <q-header bordered class="bg-white text-gray-9">
+      <q-toolbar>
+        <q-btn flat dense to="/">
+          <q-toolbar-title>
+            <q-avatar>
+              <img src="/logo.svg" />
+            </q-avatar>
+            짐코딩 클럽
+          </q-toolbar-title>
+        </q-btn>
+        <q-space />
+        <q-btn stretch flat label="Home" text-color="black" to="/home" />
+        <q-btn
+          stretch
+          flat
+          label="수강하기"
+          text-color="black"
+          href="https://google.com"
+          target="_blank"
+        />
+        <q-btn
+          stretch
+          flat
+          label="온라인 강의"
+          text-color="black"
+          href="https://edu.gymcoding.com"
+          target="_blank"
+        />
+        <q-btn
+          stretch
+          flat
+          label="유뷰트"
+          text-color="black"
+          href="https://youtube.com.com/gymcoding"
+          target="_blank"
+        />
+        <q-separator class="q-my-md q-mr-md" dark vertical />
+        <q-btn
+          unelevated
+          rounded
+          color="primary"
+          label="로그인 / 회원가입"
+        ></q-btn>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container :style="pageContainerStyle">
+      <router-view />
+    </q-page-container>
+  </q-layout>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-<style lang="scss" scoped></style>
+const route = useRoute();
+
+const pageContainerStyle = computed(() => ({
+  maxWidth: route.meta?.width || '1080px',
+  margin: '0 auto',
+}));
+</script>
