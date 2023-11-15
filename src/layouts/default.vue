@@ -42,6 +42,7 @@
           rounded
           color="primary"
           label="로그인 / 회원가입"
+          @click="openAuthDialog"
         ></q-btn>
       </q-toolbar>
     </q-header>
@@ -49,12 +50,20 @@
     <q-page-container :style="pageContainerStyle">
       <router-view />
     </q-page-container>
+    <AuthDialog v-model="authDialog" />
   </q-layout>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+
+import AuthDialog from '/src/components/auth/AuthDialog.vue';
+
+const authDialog = ref(false);
+const openAuthDialog = () => {
+  authDialog.value = true;
+};
 
 const route = useRoute();
 
