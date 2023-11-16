@@ -19,7 +19,7 @@
             {{ category }}
           </q-chip>
         </div>
-        <div class="text-h5 q-mt-sm">
+        <div class="text-h6 q-mt-sm">
           {{ title }}
         </div>
         <div class="text-primary text-caption">
@@ -27,7 +27,7 @@
             #{{ tag }}</span
           >
         </div>
-        <div class="text-gray-6 q-my-sm">
+        <div class="text-gray-6 q-my-sm ellipsis-2-lines">
           {{ content }}
         </div>
         <div class="row flex items-center">
