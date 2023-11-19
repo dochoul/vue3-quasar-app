@@ -26,7 +26,7 @@
             <img src="https://cdn.quasar.dev/img/avatar.png" alt="" />
           </q-avatar>
         </q-item-section>
-        <q-item-section side top>
+        <q-item-section>
           <div class="flex text-caption">
             <span>짐코딩</span>
             <span class="q-mx-xs">&middot;</span>
