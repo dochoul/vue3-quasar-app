@@ -37,12 +37,19 @@
         unelevated
         color="primary"
         outline
+        @click="handleSingleGoogle"
       />
     </q-form>
   </div>
 </template>
 
 <script setup>
+import { signInWithGoogle } from 'src/services/auth';
+
+const handleSingleGoogle = async () => {
+  await signInWithGoogle();
+};
+
 defineEmits(['changeView']);
 </script>
 

@@ -109,8 +109,8 @@ defineProps({
     type: Date,
   },
   tags: {
-    type: String,
-    default: () => {},
+    type: Array,
+    default: () => [],
   },
   uid: {
     type: String,

@@ -9,7 +9,7 @@ import PostItem from './PostItem.vue';
 
 defineProps({
   items: Array,
-  default: () => {},
+  default: () => [],
 });
 </script>
 
