@@ -3,13 +3,9 @@ import { boot } from 'quasar/wrappers';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useAuthStore } from 'src/stores/auth';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyCGpCyKxhXD4sQSH023gq7RZmC2jE2Za78',
   authDomain: 'vue3-firebase-app-c7c28.firebaseapp.com',
@@ -27,8 +23,10 @@ const auth = getAuth(app);
 
 export { auth };
 
-// "async" is optional;
-// more info on params: https://v2.quasar.dev/quasar-cli/boot-files
 export default boot(async (/* { app, router, ... } */) => {
-  // something to do
+  const authStore = useAuthStore();
+  onAuthStateChanged(auth, user => {
+    console.log(user);
+    authStore.setUser(user);
+  });
 });

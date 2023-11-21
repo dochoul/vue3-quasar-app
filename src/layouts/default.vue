@@ -36,24 +36,26 @@
           href="https://youtube.com.com/gymcoding"
           target="_blank"
         />
+
         <q-separator class="q-my-md q-mr-md" dark vertical />
         <q-btn
+          v-if="!authStore.isAuth"
           unelevated
           rounded
           color="primary"
           label="로그인 / 회원가입"
           @click="openAuthDialog"
         ></q-btn>
-        <q-btn round flat>
+        <q-btn v-if="authStore.isAuth" round flat>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/img/avatar.png" />
+            <img :src="authStore.user.photoURL" />
           </q-avatar>
           <q-menu>
             <q-list style="min-width: 100px">
               <q-item clickable v-close-popup to="/mypage/profile">
                 <q-item-section>프로필</q-item-section>
               </q-item>
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup @click="handleLogout">
                 <q-item-section>로그아웃</q-item-section>
               </q-item>
             </q-list>
@@ -70,10 +72,13 @@
 </template>
 
 <script setup>
+import { logout } from 'src/services/auth';
+import { useAuthStore } from 'src/stores/auth';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
-
 import AuthDialog from '/src/components/auth/AuthDialog.vue';
+
+const authStore = useAuthStore();
 
 const authDialog = ref(false);
 const openAuthDialog = () => {
@@ -86,4 +91,8 @@ const pageContainerStyle = computed(() => ({
   maxWidth: route.meta?.width || '1080px',
   margin: '0 auto',
 }));
+
+const handleLogout = async () => {
+  await logout();
+};
 </script>
