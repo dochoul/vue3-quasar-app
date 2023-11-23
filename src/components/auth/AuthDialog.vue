@@ -28,6 +28,7 @@
         <component
           :is="authViewComponents[changeMode]"
           @change-view="changeViewMode"
+          @close-dialog="closeDialog"
         />
       </q-card-section>
     </q-card>
@@ -60,13 +61,17 @@ const authViewComponents = {
 //   FindPasswordForm,
 // };
 
+const closeDialog = () => {
+  emit('update:modelValue', false);
+};
+
 defineProps({
   modelValue: {
     type: Boolean,
     default: false,
   },
 });
-defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
 </script>
 
 <style lang="scss" scoped></style>
