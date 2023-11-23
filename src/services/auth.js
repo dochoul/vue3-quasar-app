@@ -1,6 +1,7 @@
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -31,10 +32,14 @@ export async function signUpWithEmail({ email, password, nickname }) {
   });
 }
 
-//* 로그인 구글
+//* 로그인 이메일로
 export async function signInWithEmail({ email, password }) {
   const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
+}
+
+export async function sendPasswordReset(email) {
+  await sendPasswordResetEmail(auth, email);
 }
 
 export function generateDefaultPhotoURL(uid) {
